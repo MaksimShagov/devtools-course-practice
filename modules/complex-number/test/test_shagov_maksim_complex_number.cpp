@@ -33,5 +33,5 @@ TEST(Shagov_Maksim_ComplexNumberTEST, No_equal_test) {
     ComplexNumber number(1.0, -1.0);
     ComplexNumber number1(-131.2, 13.8);
 
-    ASSERT_TRUE(number != number1);
+    ASSERT_NE(number, number1);
 }
