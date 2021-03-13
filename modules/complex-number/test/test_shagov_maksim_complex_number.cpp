@@ -2,7 +2,6 @@
 
 #include <gtest/gtest.h>
 
-#include <tuple>
 #include "include/complex_number.h"
 
 TEST(Shagov_Maksim_ComplexNumberTEST, Constructor) {
