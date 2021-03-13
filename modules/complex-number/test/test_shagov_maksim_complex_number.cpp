@@ -13,9 +13,7 @@ TEST(Shagov_Maksim_ComplexNumberTEST, Constructor) {
 
 TEST(Shagov_Maksim_ComplexNumberTEST, Operator_equals) {
     ComplexNumber number(13.7, -11.2);
-    ComplexNumber number1;
-
-    number1 = number;
+    ComplexNumber number1 = number;
 
     ASSERT_EQ(number.getRe(), number1.getRe());
     ASSERT_EQ(number.getIm(), number1.getIm());
