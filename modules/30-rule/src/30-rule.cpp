@@ -1,5 +1,5 @@
 // Copyright 2021 Maksim Shagov
-#include "30-rule.h"
+#include "include/30-rule.h""
 
 GameOfLife::GameOfLife(const unsigned int rows, const unsigned int cols) {
     this->rows = rows;
