@@ -1,7 +1,7 @@
 // Copyright 2021 Maksim Shagov
 #include "include/30-rule.h""
 
-GameOfLife::GameOfLife(const unsigned int rows, const unsigned int cols) {
+CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols) {
     this->rows = rows;
     this->cols = cols;
     initialize(rows, cols);
@@ -15,7 +15,7 @@ void resize(vector<vector<T>>& target, const unsigned int dx, const unsigned int
     }
 }
 
-void GameOfLife::iterate(const unsigned int iterations) {
+void CellularAuto::iterate(const unsigned int iterations) {
     unsigned int rows = state.size();
     unsigned int cells = 0;
     if (rows != 0) {
@@ -28,9 +28,9 @@ void GameOfLife::iterate(const unsigned int iterations) {
         for (unsigned int r = 0; r < rows - 1; r++) {
             for (unsigned int c = 1; c < cells - 1; c++) {
                 new_state[c] = rules(r, c);
-            }//end for r
+            }
             state[r + 1] = new_state;
-        }//end for iteration
+        }
     }
 }
 
@@ -41,7 +41,7 @@ void GameOfLife::iterate(const unsigned int iterations) {
         return '*';
     }
 
-    void GameOfLife::print() const {
+    void CellularAuto::print() const {
         for (unsigned int r = 0; r < state.size(); r++) {
             for (unsigned int c = 0; c < state[r].size(); c++) {
                 std::cout << state_to_char(state[r][c]) << " ";
@@ -50,7 +50,7 @@ void GameOfLife::iterate(const unsigned int iterations) {
         }
     }
 
-    void GameOfLife::initialize(const unsigned int rows, const unsigned int cols) {
+    void CellularAuto::initialize(const unsigned int rows, const unsigned int cols) {
         state.resize(rows);
         for (unsigned int r = 0; r < rows; r++) {
             state[r].resize(cols);
@@ -62,7 +62,19 @@ void GameOfLife::iterate(const unsigned int iterations) {
         state[0][cols/2] = alive;
     }
 
-    CellState GameOfLife::rules(const int row, const int col) const
+    void CellularAuto::initialize(const unsigned int rows, const unsigned int cols, vector<CellState> init) {
+        state.resize(rows);
+        for (unsigned int r = 0; r < rows; r++) {
+            state[r].resize(cols);
+            for (unsigned int c = 0; c < cols; c++) {
+                state[r][c] = dead;
+            }
+        }
+
+        state[0] = init;
+    }
+
+    CellState CellularAuto::rules(const int row, const int col) const
     {
         if (state[row][col - 1] == dead && state[row][col] == dead && state[row][col + 1] == alive) {
             return alive;
@@ -72,7 +84,7 @@ void GameOfLife::iterate(const unsigned int iterations) {
         } else
         if (state[row][col - 1] == dead && state[row][col] == alive && state[row][col + 1] == alive) {
             return alive;
-        }else
+        } else
         if (state[row][col - 1] == alive && state[row][col] == dead && state[row][col + 1] == dead) {
             return alive;
         }

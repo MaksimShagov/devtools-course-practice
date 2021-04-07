@@ -3,10 +3,10 @@
 
 int main() {
 
-    GameOfLife game(10,10);
-    game.print(); //print initial configuration
-    game.iterate(10); //or iterate(10) or how many steps you want
-    game.print(); //print configuration at the end
+    CellularAuto game(10,10);
+    game.print();
+    game.iterate(10);
+    game.print();
 
     return 0;
 }

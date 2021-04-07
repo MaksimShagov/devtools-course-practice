@@ -11,14 +11,14 @@ enum CellState { //replacing your char* with CellState
     dead, alive
 };
 
-class GameOfLife {
+class CellularAuto {
 
 public:
 
-    GameOfLife(const unsigned int rows, const unsigned int cols);
-    virtual ~GameOfLife() {}; //can omit the virtual if no subclasses are guaranteed
+    CellularAuto(const unsigned int rows, const unsigned int cols);
+    virtual ~CellularAuto() {};
 
-    void iterate(const unsigned int iterations); //can do several steps at once, one step at a time is the assumed default
+    void iterate(const unsigned int iterations);
     void print() const;
 
 private:
@@ -26,7 +26,8 @@ private:
     unsigned int cols = 0;
     unsigned int rows = 0;
 
-    void initialize(const unsigned int rows, const unsigned int cols); //does the randomization
+    void initialize(const unsigned int rows, const unsigned int cols);
+    void initialize(const unsigned int rows, const unsigned int cols, vector<CellState> init);
     CellState rules(const int row, const int col) const;
 };
 
