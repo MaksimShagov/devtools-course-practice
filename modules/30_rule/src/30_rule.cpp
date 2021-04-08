@@ -13,19 +13,20 @@ CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols) {
     initialize(rows, cols);
 }
 
-CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols, vector<CellState> init) {
+CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols,
+                           const vector<CellState>& states) {
     if (rows == 0 || cols == 0) {
         throw "Sizes must bee > 0";
     }
-    
     this->rows = rows;
     this->cols = cols;
 
-    initialize(rows, cols, init);
+    initialize(rows, cols, states);
 }
 
 template<class T>
-void resize(vector<vector<T>>& target, const unsigned int dx, const unsigned int dy) {
+void resize(vector<vector<T>>& target, const unsigned int dx,
+             const unsigned int dy) {
     target.resize(dx);
     for (unsigned int i = 0; i < dx; i++) {
         target[i].resize(dy);
@@ -44,7 +45,7 @@ void CellularAuto::iterate(const unsigned int iterations) {
     }
 
     vector<CellState> new_state(cols);
-    
+
     for (unsigned int iteration = 0; iteration < iterations; iteration++) {
         for (unsigned int r = 0; r < rows - 1; r++) {
             for (unsigned int c = 1; c < cells - 1; c++) {
@@ -71,7 +72,8 @@ void CellularAuto::print() const {
     }
 }
 
-void CellularAuto::initialize(const unsigned int rows, const unsigned int cols) {
+void CellularAuto::initialize(const unsigned int rows,
+                              const unsigned int cols) {
     state.resize(rows);
     for (unsigned int r = 0; r < rows; r++) {
         state[r].resize(cols);
@@ -83,7 +85,8 @@ void CellularAuto::initialize(const unsigned int rows, const unsigned int cols) 
     state[0][cols/2] = alive;
 }
 
-void CellularAuto::initialize(const unsigned int rows, const unsigned int cols, vector<CellState> init) {
+void CellularAuto::initialize(const unsigned int rows, const unsigned int cols,
+                              vector<CellState> init) {
     state.resize(rows);
     for (unsigned int r = 0; r < rows; r++) {
         state[r].resize(cols);
@@ -96,13 +99,17 @@ void CellularAuto::initialize(const unsigned int rows, const unsigned int cols, 
 }
 
 CellState CellularAuto::rules(const int row, const int col) const {
-    if (state[row][col - 1] == dead && state[row][col] == dead && state[row][col + 1] == alive) {
+    if (state[row][col - 1] == dead && state[row][col] == dead &&
+     state[row][col + 1] == alive) {
         return alive;
-    } else if (state[row][col - 1] == dead && state[row][col] == alive && state[row][col + 1] == dead) {
+    } else if (state[row][col - 1] == dead && state[row][col] == alive &&
+     state[row][col + 1] == dead) {
         return alive;
-    } else if (state[row][col - 1] == dead && state[row][col] == alive && state[row][col + 1] == alive) {
+    } else if (state[row][col - 1] == dead && state[row][col] == alive &&
+     state[row][col + 1] == alive) {
         return alive;
-    } else if (state[row][col - 1] == alive && state[row][col] == dead && state[row][col + 1] == dead) {
+    } else if (state[row][col - 1] == alive && state[row][col] == dead &&
+     state[row][col + 1] == dead) {
         return alive;
     }
     return dead;

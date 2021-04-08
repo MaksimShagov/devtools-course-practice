@@ -12,9 +12,10 @@ enum CellState {
 };
 
 class CellularAuto {
-public:
+ public:
     CellularAuto(const unsigned int rows, const unsigned int cols);
-    CellularAuto(const unsigned int rows, const unsigned int cols, vector<CellState> states);
+    CellularAuto(const unsigned int rows, const unsigned int cols,
+                 const vector<CellState>& states);
     virtual ~CellularAuto();
 
     vector<vector<CellState>> get_state();
