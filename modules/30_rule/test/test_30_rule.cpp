@@ -10,6 +10,11 @@ TEST(Maksim_Shagov_Cell_Auto, can_throw_ex_zero_size) {
     ASSERT_ANY_THROW(CellularAuto(0, 0));
 }
 
+TEST(Maksim_Shagov_Cell_Auto, can_throw_ex_zero_size_with_state) {
+    vector<CellState> state;
+    ASSERT_ANY_THROW(CellularAuto(0, 0, state));
+}
+
 TEST(Maksim_Shagov_Cell_Auto, can_create_cell_class) {
     ASSERT_NO_THROW(CellularAuto(1, 1));
 }
