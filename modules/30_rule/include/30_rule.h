@@ -7,7 +7,7 @@
 #include <iostream>
 using std::vector;
 
-enum CellState { //replacing your char* with CellState
+enum CellState {
     dead, alive
 };
 
@@ -16,7 +16,10 @@ class CellularAuto {
 public:
 
     CellularAuto(const unsigned int rows, const unsigned int cols);
+    CellularAuto(const unsigned int rows, const unsigned int cols, vector<CellState> states);
     virtual ~CellularAuto() {};
+
+    vector<vector<CellState>> get_state();
 
     void iterate(const unsigned int iterations);
     void print() const;

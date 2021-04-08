@@ -1,10 +1,26 @@
 // Copyright 2021 Maksim Shagov
-#include "include/30-rule.h""
+#include "include/30_rule.h""
 
 CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols) {
+    if (rows == 0 || cols == 0) {
+        throw "Sizes must bee > 0";
+    }
+    
     this->rows = rows;
     this->cols = cols;
+
     initialize(rows, cols);
+}
+
+CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols, vector<CellState> init) {
+    if (rows == 0 || cols == 0) {
+        throw "Sizes must bee > 0";
+    }
+    
+    this->rows = rows;
+    this->cols = cols;
+
+    initialize(rows, cols, init);
 }
 
 template<class T>
@@ -13,6 +29,10 @@ void resize(vector<vector<T>>& target, const unsigned int dx, const unsigned int
     for (unsigned int i = 0; i < dx; i++) {
         target[i].resize(dy);
     }
+}
+
+vector<vector<CellState>> CellularAuto::get_state() {
+    return state;
 }
 
 void CellularAuto::iterate(const unsigned int iterations) {
@@ -90,4 +110,3 @@ void CellularAuto::iterate(const unsigned int iterations) {
         }
         return dead;
     }
-
