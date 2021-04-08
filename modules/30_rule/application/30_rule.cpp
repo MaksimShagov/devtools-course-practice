@@ -2,8 +2,7 @@
 #include "include/30_rule.h"
 
 int main() {
-
-    CellularAuto game(10,10);
+    CellularAuto game(10, 10);
     game.print();
     game.iterate(10);
     game.print();
