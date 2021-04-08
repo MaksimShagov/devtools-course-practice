@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 
 #include <tuple>
+#include <vector>
 #include "../include/30_rule.h"
 
 TEST(Maksim_Shagov_Cell_Auto, can_throw_ex_zero_size) {
@@ -28,7 +29,7 @@ TEST(Maksim_Shagov_Cell_Auto, can_create_2_equal_auto) {
     vector<CellState> state {dead, dead, dead};
     CellularAuto automat(1, 3, state);
     CellularAuto automat2(1, 3, state);
- 
+
     ASSERT_EQ(automat.get_state(), automat2.get_state());
 }
 
@@ -89,13 +90,3 @@ TEST(Maksim_Shagov_Cell_Auto, classic_seq_for_rule_30) {
 
     ASSERT_EQ(automat.get_state()[1], state);
 }
-
-/*
-TEST(Maksim_Shagov_Cell_Auto, can_throw_ex_zero_size) {
-    ASSERT_ANY_THROW(CellularAuto(0, 0));
-}
-
-TEST(Maksim_Shagov_Cell_Auto, can_throw_ex_zero_size) {
-    ASSERT_ANY_THROW(CellularAuto(0, 0));
-}
-*/
