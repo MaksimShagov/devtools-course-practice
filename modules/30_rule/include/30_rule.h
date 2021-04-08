@@ -30,7 +30,7 @@ class CellularAuto {
 
     void initialize(const unsigned int rows, const unsigned int cols);
     void initialize(const unsigned int rows, const unsigned int cols,
-     vector<CellState> init);
+     const vector<CellState>& init);
     CellState rules(const int row, const int col) const;
 };
 
