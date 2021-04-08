@@ -3,9 +3,7 @@
 
 int main() {
     CellularAuto game(10, 10);
-    game.print();
     game.iterate(10);
-    game.print();
 
     return 0;
 }
