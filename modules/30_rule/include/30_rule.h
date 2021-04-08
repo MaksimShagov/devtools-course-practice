@@ -12,25 +12,24 @@ enum CellState {
 };
 
 class CellularAuto {
-
 public:
-
     CellularAuto(const unsigned int rows, const unsigned int cols);
     CellularAuto(const unsigned int rows, const unsigned int cols, vector<CellState> states);
-    virtual ~CellularAuto() {};
+    virtual ~CellularAuto();
 
     vector<vector<CellState>> get_state();
 
     void iterate(const unsigned int iterations);
     void print() const;
 
-private:
+ private:
     vector<vector<CellState>> state;
     unsigned int cols = 0;
     unsigned int rows = 0;
 
     void initialize(const unsigned int rows, const unsigned int cols);
-    void initialize(const unsigned int rows, const unsigned int cols, vector<CellState> init);
+    void initialize(const unsigned int rows, const unsigned int cols,
+     vector<CellState> init);
     CellState rules(const int row, const int col) const;
 };
 

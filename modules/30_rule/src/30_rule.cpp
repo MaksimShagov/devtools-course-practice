@@ -55,55 +55,55 @@ void CellularAuto::iterate(const unsigned int iterations) {
     }
 }
 
-    char state_to_char(const CellState state) {
-        if (state == dead) {
-            return ' ';
+char state_to_char(const CellState state) {
+    if (state == dead) {
+        return ' ';
+    }
+    return '*';
+}
+
+void CellularAuto::print() const {
+    for (unsigned int r = 0; r < state.size(); r++) {
+        for (unsigned int c = 0; c < state[r].size(); c++) {
+            std::cout << state_to_char(state[r][c]) << " ";
         }
-        return '*';
+        std::cout << std::endl;
+    }
+}
+
+void CellularAuto::initialize(const unsigned int rows, const unsigned int cols) {
+    state.resize(rows);
+    for (unsigned int r = 0; r < rows; r++) {
+        state[r].resize(cols);
+        for (unsigned int c = 0; c < cols; c++) {
+            state[r][c] = dead;
+        }
     }
 
-    void CellularAuto::print() const {
-        for (unsigned int r = 0; r < state.size(); r++) {
-            for (unsigned int c = 0; c < state[r].size(); c++) {
-                std::cout << state_to_char(state[r][c]) << " ";
-            }
-            std::cout << std::endl;
+    state[0][cols/2] = alive;
+}
+
+void CellularAuto::initialize(const unsigned int rows, const unsigned int cols, vector<CellState> init) {
+    state.resize(rows);
+    for (unsigned int r = 0; r < rows; r++) {
+        state[r].resize(cols);
+        for (unsigned int c = 0; c < cols; c++) {
+            state[r][c] = dead;
         }
     }
 
-    void CellularAuto::initialize(const unsigned int rows, const unsigned int cols) {
-        state.resize(rows);
-        for (unsigned int r = 0; r < rows; r++) {
-            state[r].resize(cols);
-            for (unsigned int c = 0; c < cols; c++) {
-                state[r][c] = dead;
-            }
-        }
+    state[0] = init;
+}
 
-        state[0][cols/2] = alive;
+CellState CellularAuto::rules(const int row, const int col) const {
+    if (state[row][col - 1] == dead && state[row][col] == dead && state[row][col + 1] == alive) {
+        return alive;
+    } else if (state[row][col - 1] == dead && state[row][col] == alive && state[row][col + 1] == dead) {
+        return alive;
+    } else if (state[row][col - 1] == dead && state[row][col] == alive && state[row][col + 1] == alive) {
+        return alive;
+    } else if (state[row][col - 1] == alive && state[row][col] == dead && state[row][col + 1] == dead) {
+        return alive;
     }
-
-    void CellularAuto::initialize(const unsigned int rows, const unsigned int cols, vector<CellState> init) {
-        state.resize(rows);
-        for (unsigned int r = 0; r < rows; r++) {
-            state[r].resize(cols);
-            for (unsigned int c = 0; c < cols; c++) {
-                state[r][c] = dead;
-            }
-        }
-
-        state[0] = init;
-    }
-
-    CellState CellularAuto::rules(const int row, const int col) const {
-        if (state[row][col - 1] == dead && state[row][col] == dead && state[row][col + 1] == alive) {
-            return alive;
-        } else if (state[row][col - 1] == dead && state[row][col] == alive && state[row][col + 1] == dead) {
-            return alive;
-        } else if (state[row][col - 1] == dead && state[row][col] == alive && state[row][col + 1] == alive) {
-            return alive;
-        } else if (state[row][col - 1] == alive && state[row][col] == dead && state[row][col + 1] == dead) {
-            return alive;
-        }
-        return dead;
-    }
+    return dead;
+}
