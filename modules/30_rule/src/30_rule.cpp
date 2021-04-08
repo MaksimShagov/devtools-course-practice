@@ -6,10 +6,10 @@ CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols) {
     if (rows == 0 || cols == 0) {
         throw "Sizes must bee > 0";
     }
-    
+
     this->rows = rows;
     this->cols = cols;
-
+    
     initialize(rows, cols);
 }
 
