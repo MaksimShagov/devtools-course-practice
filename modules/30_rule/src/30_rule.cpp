@@ -56,22 +56,6 @@ void CellularAuto::iterate(const unsigned int iterations) {
     }
 }
 
-char state_to_char(const CellState state) {
-    if (state == dead) {
-        return ' ';
-    }
-    return '*';
-}
-
-void CellularAuto::print() const {
-    for (unsigned int r = 0; r < state.size(); r++) {
-        for (unsigned int c = 0; c < state[r].size(); c++) {
-            std::cout << state_to_char(state[r][c]) << " ";
-        }
-        std::cout << std::endl;
-    }
-}
-
 void CellularAuto::initialize(const unsigned int rows,
                               const unsigned int cols) {
     state.resize(rows);

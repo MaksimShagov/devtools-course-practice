@@ -21,7 +21,6 @@ class CellularAuto {
     vector<vector<CellState>> get_state();
 
     void iterate(const unsigned int iterations);
-    void print() const;
 
  private:
     vector<vector<CellState>> state;
