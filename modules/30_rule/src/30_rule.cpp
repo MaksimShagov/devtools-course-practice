@@ -86,7 +86,7 @@ void CellularAuto::initialize(const unsigned int rows,
 }
 
 void CellularAuto::initialize(const unsigned int rows, const unsigned int cols,
-                              vector<CellState> init) {
+                              const vector<CellState>& init) {
     state.resize(rows);
     for (unsigned int r = 0; r < rows; r++) {
         state[r].resize(cols);

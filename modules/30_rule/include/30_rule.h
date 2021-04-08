@@ -16,7 +16,7 @@ class CellularAuto {
     CellularAuto(const unsigned int rows, const unsigned int cols);
     CellularAuto(const unsigned int rows, const unsigned int cols,
                  const vector<CellState>& states);
-    virtual ~CellularAuto();
+    virtual ~CellularAuto() {}
 
     vector<vector<CellState>> get_state();
 
