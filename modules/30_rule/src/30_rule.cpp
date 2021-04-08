@@ -1,15 +1,15 @@
 // Copyright 2021 Maksim Shagov
 
 #include "../include/30_rule.h"
+#include <vector>
 
 CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols) {
     if (rows == 0 || cols == 0) {
         throw "Sizes must bee > 0";
     }
-
     this->rows = rows;
     this->cols = cols;
-    
+
     initialize(rows, cols);
 }
 
@@ -95,18 +95,14 @@ void CellularAuto::iterate(const unsigned int iterations) {
         state[0] = init;
     }
 
-    CellState CellularAuto::rules(const int row, const int col) const
-    {
+    CellState CellularAuto::rules(const int row, const int col) const {
         if (state[row][col - 1] == dead && state[row][col] == dead && state[row][col + 1] == alive) {
             return alive;
-        } else
-        if (state[row][col - 1] == dead && state[row][col] == alive && state[row][col + 1] == dead) {
+        } else if (state[row][col - 1] == dead && state[row][col] == alive && state[row][col + 1] == dead) {
             return alive;
-        } else
-        if (state[row][col - 1] == dead && state[row][col] == alive && state[row][col + 1] == alive) {
+        } else if (state[row][col - 1] == dead && state[row][col] == alive && state[row][col + 1] == alive) {
             return alive;
-        } else
-        if (state[row][col - 1] == alive && state[row][col] == dead && state[row][col + 1] == dead) {
+        } else if (state[row][col - 1] == alive && state[row][col] == dead && state[row][col + 1] == dead) {
             return alive;
         }
         return dead;
