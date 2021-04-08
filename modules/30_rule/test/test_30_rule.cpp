@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 
 #include <tuple>
-#include "../include/30_rule.h""
+#include "include/30_rule.h"
 
 TEST(Maksim_Shagov_Cell_Auto, can_throw_ex_zero_size) {
     ASSERT_ANY_THROW(CellularAuto(0, 0));
