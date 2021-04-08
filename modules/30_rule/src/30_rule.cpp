@@ -1,6 +1,6 @@
 // Copyright 2021 Maksim Shagov
 
-#include "../include/30_rule.h"
+#include "include/30_rule.h"
 #include <vector>
 
 CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols) {
