@@ -39,11 +39,11 @@ CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols,
 }
 
 template<class T>
-void resize(vector<vector<T>>& target, const unsigned int dx,
+void resize(vector<vector<T>>* target, const unsigned int dx,
              const unsigned int dy) {
-    target.resize(dx);
+    target->resize(dx);
     for (unsigned int i = 0; i < dx; i++) {
-        target[i].resize(dy);
+        target[i]->resize(dy);
     }
 }
 
