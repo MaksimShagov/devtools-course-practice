@@ -10,7 +10,13 @@ CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols) {
     this->rows = rows;
     this->cols = cols;
 
-    initialize(rows, cols);
+    state.resize(rows);
+    for (unsigned int r = 0; r < rows; r++) {
+        state[r].resize(cols);
+        for (unsigned int c = 0; c < cols; c++) {
+            state[r][c] = dead;
+        }
+    }
 }
 
 CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols,
@@ -21,15 +27,23 @@ CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols,
     this->rows = rows;
     this->cols = cols;
 
-    initialize(rows, cols, states);
+    state.resize(rows);
+    for (unsigned int r = 0; r < rows; r++) {
+        state[r].resize(cols);
+        for (unsigned int c = 0; c < cols; c++) {
+            state[r][c] = dead;
+        }
+    }
+
+    state[0] = states;
 }
 
 template<class T>
-void resize(vector<vector<T>>* target, const unsigned int dx,
+void resize(vector<vector<T>>& target, const unsigned int dx,
              const unsigned int dy) {
-    target->resize(dx);
+    target.resize(dx);
     for (unsigned int i = 0; i < dx; i++) {
-        target[i]->resize(dy);
+        target[i].resize(dy);
     }
 }
 
@@ -54,32 +68,6 @@ void CellularAuto::iterate(const unsigned int iterations) {
             state[r + 1] = new_state;
         }
     }
-}
-
-void CellularAuto::initialize(const unsigned int rows,
-                              const unsigned int cols) {
-    state.resize(rows);
-    for (unsigned int r = 0; r < rows; r++) {
-        state[r].resize(cols);
-        for (unsigned int c = 0; c < cols; c++) {
-            state[r][c] = dead;
-        }
-    }
-
-    state[0][cols/2] = alive;
-}
-
-void CellularAuto::initialize(const unsigned int rows, const unsigned int cols,
-                              const vector<CellState>& init) {
-    state.resize(rows);
-    for (unsigned int r = 0; r < rows; r++) {
-        state[r].resize(cols);
-        for (unsigned int c = 0; c < cols; c++) {
-            state[r][c] = dead;
-        }
-    }
-
-    state[0] = init;
 }
 
 CellState CellularAuto::rules(const int row, const int col) const {
