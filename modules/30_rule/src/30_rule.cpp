@@ -1,7 +1,7 @@
 // Copyright 2021 Maksim Shagov
 
-#include "include/30_rule.h"
 #include <vector>
+#include "include/30_rule.h"
 
 CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols) {
     if (rows == 0 || cols == 0) {
@@ -12,15 +12,12 @@ CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols) {
 
     state.resize(rows);
     for (unsigned int r = 0; r < rows; r++) {
-        state[r].resize(cols);
-        for (unsigned int c = 0; c < cols; c++) {
-            state[r][c] = dead;
-        }
+        state[r].resize(cols, CellState::DEAD);
     }
 }
 
 CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols,
-                           const vector<CellState>& states) {
+                           const std::vector<CellState>& states) {
     if (rows == 0 || cols == 0) {
         throw "Sizes must bee > 0";
     }
@@ -28,18 +25,14 @@ CellularAuto::CellularAuto(const unsigned int rows, const unsigned int cols,
     this->cols = cols;
 
     state.resize(rows);
-    for (unsigned int r = 0; r < rows; r++) {
-        state[r].resize(cols);
-        for (unsigned int c = 0; c < cols; c++) {
-            state[r][c] = dead;
-        }
-    }
-
     state[0] = states;
+    for (unsigned int r = 1; r < rows; r++) {
+        state[r].resize(cols, CellState::DEAD);
+    }
 }
 
 template<class T>
-void resize(vector<vector<T>>* target, const unsigned int dx,
+void resize(std::vector<std::vector<T>>* target, const unsigned int dx,
              const unsigned int dy) {
     target->resize(dx);
     for (unsigned int i = 0; i < dx; i++) {
@@ -47,18 +40,18 @@ void resize(vector<vector<T>>* target, const unsigned int dx,
     }
 }
 
-vector<vector<CellState>> CellularAuto::get_state() {
+const std::vector<std::vector<CellState>>& CellularAuto::get_state() const {
     return state;
 }
 
 void CellularAuto::iterate(const unsigned int iterations) {
-    unsigned int rows = state.size();
+    unsigned int rows = static_cast<unsigned int>(state.size());
     unsigned int cells = 0;
     if (rows != 0) {
-        cells = state[0].size();
+        cells = static_cast<unsigned int>(state[0].size());
     }
 
-    vector<CellState> new_state(cols);
+    std::vector<CellState> new_state(cols);
 
     for (unsigned int iteration = 0; iteration < iterations; iteration++) {
         for (unsigned int r = 0; r < rows - 1; r++) {
@@ -71,18 +64,21 @@ void CellularAuto::iterate(const unsigned int iterations) {
 }
 
 CellState CellularAuto::rules(const int row, const int col) const {
-    if (state[row][col - 1] == dead && state[row][col] == dead &&
-     state[row][col + 1] == alive) {
-        return alive;
-    } else if (state[row][col - 1] == dead && state[row][col] == alive &&
-     state[row][col + 1] == dead) {
-        return alive;
-    } else if (state[row][col - 1] == dead && state[row][col] == alive &&
-     state[row][col + 1] == alive) {
-        return alive;
-    } else if (state[row][col - 1] == alive && state[row][col] == dead &&
-     state[row][col + 1] == dead) {
-        return alive;
+    if (state[row][col - 1] == CellState::DEAD && state[row][col] == CellState::DEAD &&
+     state[row][col + 1] == CellState::ALIVE) {
+        return CellState::ALIVE;
     }
-    return dead;
+    if (state[row][col - 1] == CellState::DEAD && state[row][col] == CellState::ALIVE &&
+     state[row][col + 1] == CellState::DEAD) {
+        return CellState::ALIVE;
+    }
+    if (state[row][col - 1] == CellState::DEAD && state[row][col] == CellState::ALIVE &&
+     state[row][col + 1] == CellState::ALIVE) {
+        return CellState::ALIVE;
+    }
+    if (state[row][col - 1] == CellState::ALIVE && state[row][col] == CellState::DEAD &&
+     state[row][col + 1] == CellState::DEAD) {
+        return CellState::ALIVE;
+    }
+    return CellState::DEAD;
 }

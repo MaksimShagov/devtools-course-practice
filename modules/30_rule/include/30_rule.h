@@ -4,26 +4,25 @@
 #define MODULES_30_RULE_INCLUDE_30_RULE_H_
 
 #include <vector>
-#include <iostream>
-using std::vector;
 
-enum CellState {
-    dead, alive
+enum class CellState {
+    DEAD,
+    ALIVE
 };
 
 class CellularAuto {
  public:
     CellularAuto(const unsigned int rows, const unsigned int cols);
     CellularAuto(const unsigned int rows, const unsigned int cols,
-                 const vector<CellState>& states);
+                 const std::vector<CellState>& states);
     ~CellularAuto() = default;
 
-    vector<vector<CellState>> get_state();
+    const std::vector<std::vector<CellState>>& get_state() const;
 
     void iterate(const unsigned int iterations);
 
  private:
-    vector<vector<CellState>> state;
+    std::vector<std::vector<CellState>> state;
     unsigned int cols = 0;
     unsigned int rows = 0;
 

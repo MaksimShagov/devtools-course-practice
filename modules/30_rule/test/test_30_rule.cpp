@@ -11,7 +11,7 @@ TEST(Maksim_Shagov_Cell_Auto, can_throw_ex_zero_size) {
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_throw_ex_zero_size_with_state) {
-    vector<CellState> state;
+    std::vector<CellState> state;
     ASSERT_ANY_THROW(CellularAuto(0, 0, state));
 }
 
@@ -20,18 +20,18 @@ TEST(Maksim_Shagov_Cell_Auto, can_create_cell_class) {
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_create_cell_class_from_vector) {
-    vector<CellState> state {dead, alive, dead};
+    std::vector<CellState> state {CellState::DEAD, CellState::ALIVE, CellState::DEAD};
     ASSERT_NO_THROW(CellularAuto(1, 1, state));
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_iterate_5_times) {
-    vector<CellState> state {dead, alive, dead};
+    std::vector<CellState> state {CellState::DEAD, CellState::ALIVE, CellState::DEAD};
     CellularAuto automat(1, 3, state);
     ASSERT_NO_THROW(automat.iterate(5));
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_create_2_equal_auto) {
-    vector<CellState> state {dead, dead, dead};
+    std::vector<CellState> state {CellState::DEAD, CellState::DEAD, CellState::DEAD};
     CellularAuto automat(1, 3, state);
     CellularAuto automat2(1, 3, state);
 
@@ -39,59 +39,59 @@ TEST(Maksim_Shagov_Cell_Auto, can_create_2_equal_auto) {
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_use_001_rule) {
-    vector<CellState> state {dead, dead, alive};
+    std::vector<CellState> state {CellState::DEAD, CellState::DEAD, CellState::ALIVE};
     CellularAuto automat(2, 3, state);
     automat.iterate(1);
-    state = {dead, alive, dead};
+    state = {CellState::DEAD, CellState::ALIVE, CellState::DEAD};
 
     ASSERT_EQ(automat.get_state()[1], state);
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_use_010_rule) {
-    vector<CellState> state {dead, alive, dead};
+    std::vector<CellState> state {CellState::DEAD, CellState::ALIVE, CellState::DEAD};
     CellularAuto automat(2, 3, state);
     automat.iterate(1);
-    state = {dead, alive, dead};
+    state = {CellState::DEAD, CellState::ALIVE, CellState::DEAD};
 
     ASSERT_EQ(automat.get_state()[1], state);
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_use_011_rule) {
-    vector<CellState> state {dead, alive, alive};
+    std::vector<CellState> state {CellState::DEAD, CellState::ALIVE, CellState::ALIVE};
     CellularAuto automat(2, 3, state);
     automat.iterate(1);
-    state = {dead, alive, dead};
+    state = {CellState::DEAD, CellState::ALIVE, CellState::DEAD};
 
     ASSERT_EQ(automat.get_state()[1], state);
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_use_100_rule) {
-    vector<CellState> state {alive, dead, dead};
+    std::vector<CellState> state {CellState::ALIVE, CellState::DEAD, CellState::DEAD};
     CellularAuto automat(2, 3, state);
     automat.iterate(1);
-    state = {dead, alive, dead};
+    state = {CellState::DEAD, CellState::ALIVE, CellState::DEAD};
 
     ASSERT_EQ(automat.get_state()[1], state);
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_use_111_rule) {
-    vector<CellState> state {alive, alive, alive};
+    std::vector<CellState> state {CellState::ALIVE, CellState::ALIVE, CellState::ALIVE};
     CellularAuto automat(2, 3, state);
     automat.iterate(1);
-    state = {dead, dead, dead};
+    state = {CellState::DEAD, CellState::DEAD, CellState::DEAD};
 
     ASSERT_EQ(automat.get_state()[1], state);
 }
 
 TEST(Maksim_Shagov_Cell_Auto, classic_seq_for_rule_30) {
-    vector<CellState> state {dead, dead, dead,
-                             dead, alive, dead,
-                             dead, dead, dead};
+    std::vector<CellState> state {CellState::DEAD, CellState::DEAD, CellState::DEAD,
+                             CellState::DEAD, CellState::ALIVE, CellState::DEAD,
+                             CellState::DEAD, CellState::DEAD, CellState::DEAD};
     CellularAuto automat(2, 9, state);
     automat.iterate(1);
-    state[3] = alive;
-    state[4] = alive;
-    state[5] = alive;
+    state[3] = CellState::ALIVE;
+    state[4] = CellState::ALIVE;
+    state[5] = CellState::ALIVE;
 
     ASSERT_EQ(automat.get_state()[1], state);
 }
