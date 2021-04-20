@@ -22,7 +22,7 @@ TEST(Maksim_Shagov_Cell_Auto, can_create_cell_class) {
 TEST(Maksim_Shagov_Cell_Auto, can_create_cell_class_from_vector) {
     std::vector<CellState> state {CellState::DEAD, CellState::ALIVE,
                                                    CellState::DEAD};
-    ASSERT_NO_THROW(CellularAuto(1, 1, state));
+    ASSERT_NO_THROW(CellularAuto(1, 3, state));
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_iterate_5_times) {
@@ -48,7 +48,7 @@ TEST(Maksim_Shagov_Cell_Auto, can_use_001_rule) {
     automat.iterate(1);
     state = {CellState::DEAD, CellState::ALIVE, CellState::DEAD};
 
-    ASSERT_EQ(automat.get_state()[1], state);
+    ASSERT_EQ(state, automat.get_state()[1]);
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_use_010_rule) {
@@ -58,7 +58,7 @@ TEST(Maksim_Shagov_Cell_Auto, can_use_010_rule) {
     automat.iterate(1);
     state = {CellState::DEAD, CellState::ALIVE, CellState::DEAD};
 
-    ASSERT_EQ(automat.get_state()[1], state);
+    ASSERT_EQ(state, automat.get_state()[1]);
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_use_011_rule) {
@@ -68,7 +68,7 @@ TEST(Maksim_Shagov_Cell_Auto, can_use_011_rule) {
     automat.iterate(1);
     state = {CellState::DEAD, CellState::ALIVE, CellState::DEAD};
 
-    ASSERT_EQ(automat.get_state()[1], state);
+    ASSERT_EQ(state, automat.get_state()[1]);
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_use_100_rule) {
@@ -78,7 +78,7 @@ TEST(Maksim_Shagov_Cell_Auto, can_use_100_rule) {
     automat.iterate(1);
     state = {CellState::DEAD, CellState::ALIVE, CellState::DEAD};
 
-    ASSERT_EQ(automat.get_state()[1], state);
+    ASSERT_EQ(state, automat.get_state()[1]);
 }
 
 TEST(Maksim_Shagov_Cell_Auto, can_use_111_rule) {
@@ -88,7 +88,7 @@ TEST(Maksim_Shagov_Cell_Auto, can_use_111_rule) {
     automat.iterate(1);
     state = {CellState::DEAD, CellState::DEAD, CellState::DEAD};
 
-    ASSERT_EQ(automat.get_state()[1], state);
+    ASSERT_EQ(state, automat.get_state()[1]);
 }
 
 TEST(Maksim_Shagov_Cell_Auto, classic_seq_for_rule_30) {
@@ -102,5 +102,5 @@ TEST(Maksim_Shagov_Cell_Auto, classic_seq_for_rule_30) {
     state[4] = CellState::ALIVE;
     state[5] = CellState::ALIVE;
 
-    ASSERT_EQ(automat.get_state()[1], state);
+    ASSERT_EQ(state, automat.get_state()[1]);
 }
