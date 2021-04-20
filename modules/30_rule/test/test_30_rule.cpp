@@ -92,7 +92,7 @@ TEST(Maksim_Shagov_Cell_Auto, can_use_111_rule) {
 }
 
 TEST(Maksim_Shagov_Cell_Auto, classic_seq_for_rule_30) {
-    std::vector<CellState> state 
+    std::vector<CellState> state
     {CellState::DEAD, CellState::DEAD,  CellState::DEAD,
      CellState::DEAD, CellState::ALIVE, CellState::DEAD,
      CellState::DEAD, CellState::DEAD,  CellState::DEAD};
