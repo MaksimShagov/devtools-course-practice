@@ -26,10 +26,9 @@ void VectorCalculator::help(const char* appname, const char* message) {
 }
 
 bool VectorCalculator::validateNumberOfArguments(int argc, const char** argv) {
-    if (argc == 8 || argc == 5)
-    {
+    if (argc == 8 || argc == 5) {
         return true;
-    } 
+    }
     help(argv[0], "ERROR: Should be 8 or 5 arguments.\n\n");
     return false;
 }
