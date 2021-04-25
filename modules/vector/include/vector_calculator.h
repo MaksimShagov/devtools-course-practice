@@ -16,11 +16,11 @@ class VectorCalculator {
     void help(const char* appname, const char* message = "");
     bool validateNumberOfArguments(int argc, const char** argv);
     std::string message_;
-    typedef struct {
+    struct Arguments {
         Vector v_1;
         Vector v_2;
         char operation;
-    } Arguments;
+    };
 };
 
 #endif  // MODULES_VECTOR_INCLUDE_VECTOR_CALCULATOR_H_
