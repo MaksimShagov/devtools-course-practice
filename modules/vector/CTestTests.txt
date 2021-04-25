@@ -29,7 +29,7 @@ set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
 
 add_test(
     NAME ${prefix}_can_Detect_Wrong_Number_Format
-    COMMAND ${APPLICATION} 1 ip 3 
+    COMMAND ${APPLICATION} 1 ip 3 norm
 )
 set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format PROPERTIES
     PASS_REGULAR_EXPRESSION "Wrong number format!"
@@ -61,10 +61,10 @@ set_tests_properties (${prefix}_can_Mult_Vectors PROPERTIES
 
 add_test(
     NAME ${prefix}_can_Norm_Vector
-    COMMAND ${APPLICATION} 13 -2 4.6 norm
+    COMMAND ${APPLICATION} 13 -2 1 norm
 )
 set_tests_properties (${prefix}_can_Norm_Vector PROPERTIES
-    PASS_REGULAR_EXPRESSION "v_1.norm() = 13.9341"
+    PASS_REGULAR_EXPRESSION "v_1.norm() = 13.1909"
     LABELS "${MODULE}")
 
 add_test(
