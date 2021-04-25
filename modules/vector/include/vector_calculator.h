@@ -23,6 +23,4 @@ class VectorCalculator {
     } Arguments;
 };
 
-//! @}
-
 #endif  // MODULES_VECTOR_INCLUDE_VECTOR_CALCULATOR_H_
