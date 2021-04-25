@@ -1,10 +1,10 @@
 // Copyright 2021 Shagov Maksim
 
-#ifndef MODULES_VECTOR_CALCULATOR_INCLUDE_VECTOR_CALCULATOR_H_
-#define MODULES_VECTOR_CALCULATOR_INCLUDE_VECTOR_CALCULATOR_H_
+#ifndef MODULES_VECTOR_INCLUDE_VECTOR_CALCULATOR_H_
+#define MODULES_VECTOR_INCLUDE_VECTOR_CALCULATOR_H_
 
 #include <string>
-#include "vector.h"
+#include "include/vector.h"
 
 class VectorCalculator {
  public:
@@ -25,4 +25,4 @@ class VectorCalculator {
 
 //! @}
 
-#endif  // MODULES_VECTOR_CALCULATOR_INCLUDE_VECTOR_CALCULATOR_H_
+#endif  // MODULES_VECTOR_INCLUDE_VECTOR_CALCULATOR_H_
