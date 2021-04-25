@@ -15,8 +15,8 @@ VectorCalculator::VectorCalculator() : message_("") {}
 void VectorCalculator::help(const char* appname, const char* message) {
     message_ =
         std::string(message) +
-           "This is a vector calculator application.\n\n" \
-          "Please provide arguments in the following format:\n\n" \
+           "This is a vector calculator application.\n" \
+          "Please provide arguments in the following format:\n" \
           "  $ " + appname + " <v1_x> <v1_y> <v1_z> " \
           "<v2_x> <v2_y> <v2_z> <operation>\n\n" \
           "Where all arguments are double-precision numbers, " \
