@@ -122,7 +122,7 @@ std::string VectorCalculator::operator()(int argc, const char** argv) {
                       " result.z = " << r_v.z();
             break;
         }
-        catch(std::runtime_error str) {
+        catch(std::runtime_error& str) {
             return str.what();
         }
     }
