@@ -61,10 +61,10 @@ set_tests_properties (${prefix}_can_Mult_Vectors PROPERTIES
 
 add_test(
     NAME ${prefix}_can_Norm_Vector
-    COMMAND ${APPLICATION} 13 -2 1 norm
+    COMMAND ${APPLICATION} 1 0 0 norm
 )
 set_tests_properties (${prefix}_can_Norm_Vector PROPERTIES
-    PASS_REGULAR_EXPRESSION "v_1.norm() = 13.1909"
+    PASS_REGULAR_EXPRESSION "v_1.norm() = 1"
     LABELS "${MODULE}")
 
 add_test(
