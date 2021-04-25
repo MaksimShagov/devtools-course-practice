@@ -80,6 +80,6 @@ add_test(
     NAME ${prefix}_can_Detect_Zero_Vector_Normalize
     COMMAND ${APPLICATION} 0 0 0 normalize
 )
-set_tests_properties (${prefix}_can_Detect_Divide_By_Zero PROPERTIES
+set_tests_properties (${prefix}_can_Detect_Zero_Vector_Normalize PROPERTIES
     PASS_REGULAR_EXPRESSION "Zero vector cannot be normalized."
     LABELS "${MODULE}")
