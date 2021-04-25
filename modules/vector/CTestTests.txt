@@ -64,7 +64,6 @@ add_test(
     COMMAND ${APPLICATION} 1 0 0 norm
 )
 set_tests_properties (${prefix}_can_Norm_Vector PROPERTIES
-    PASS_REGULAR_EXPRESSION "v_1.norm() = 1"
     LABELS "${MODULE}")
 
 add_test(
